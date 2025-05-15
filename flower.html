@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Flower 🌸</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap');
+
+    body {
+      margin: 0;
+      background: linear-gradient(to bottom right, #fff0f5, #fce1ec);
+      font-family: 'Poppins', sans-serif;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 10px;
+      text-align: center;
+      position: relative;
+    }
+
+    h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 2.5em;
+      color: #d63384;
+      margin-bottom: 20px;
+      z-index: 1;
+      font-weight: 100;
+    }
+
+    .flower-img {
+      width: 230px;
+      animation: bloom 1s ease-in-out;
+      z-index: 1;
+    }
+
+    @keyframes bloom {
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .message {
+      margin-top: 20px;
+      font-size: 1.4em;
+      color: #6e4c57;
+      max-width: 600px;
+      z-index: 1;
+    }
+
+    .next-btn {
+      margin-top: 40px;
+      background-color: #ff66a3;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 1em;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 16px rgba(255, 102, 163, 0.3);
+      z-index: 1;
+    }
+
+    .next-btn:hover {
+      background-color: #ff4d88;
+      transform: scale(1.05);
+    }
+
+    /* Floating flowers */
+    .floating-flower {
+      position: absolute;
+      font-size: 24px;
+      animation: floatUp 10s linear infinite;
+      opacity: 0.7;
+    }
+    .flower-frame {
+  border: 6px solid #ffb6c1;
+  border-radius: 20px;
+  padding: 10px;
+  background-color: #fff0f7;
+  box-shadow: 0 8px 20px rgba(255, 182, 193, 0.3);
+  display: inline-block;
+  z-index: 1;
+}
+
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Floating flowers -->
+  <script>
+    const flowerCount = 30;
+    for (let i = 0; i < flowerCount; i++) {
+      const flower = document.createElement('div');
+      flower.className = 'floating-flower';
+      flower.style.left = Math.random() * 100 + 'vw';
+      flower.style.animationDuration = 5 + Math.random() * 10 + 's';
+      flower.style.fontSize = (30 + Math.random() * 30) + 'px';
+      flower.innerText = '🌸';
+      document.body.appendChild(flower);
+    }
+  </script>
+
+  <h1>Just for you, langga..your virtual flower!! </h1>
+<div class="flower-frame">
+  <img class="flower-img" src="her.jpg" alt="Virtual Flower" />
+</div>
+  <div class="message">
+    I may not be beside you, but my heart always sends you this flower, filled with love and warmth.<br>
+    – Love, leyley
+  </div>
+  <button class="next-btn" onclick="window.location.href='letter.html'">read my letter hehe</button>
+</body>
+</html>
