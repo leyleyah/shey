@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Monthsary, Mine 💖</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe Script', cursive;
+      background: linear-gradient(to bottom right, #ffeaf4, #ffe5ec);
+      color: #3d1c1c;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      margin-top: 40px;
+      color: #d6336c;
+      font-size: 2.5em;
+      text-shadow: 1px 1px 2px #fff;
+    }
+
+    .section {
+      margin: 40px auto;
+      max-width: 700px;
+      padding: 30px;
+      background: #fff0f8;
+      border-radius: 20px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
+    }
+
+    canvas {
+      border: 3px solid #ff99cc;
+      border-radius: 10px;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-100vh); opacity: 0; }
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(45deg);
+      animation: float 5s linear infinite;
+    }
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+    }
+    .heart::before { top: -10px; left: 0; }
+    .heart::after { top: 0; left: -10px; }
+
+    #kissBtn {
+      background-color: #ff5e89;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 12px;
+      font-size: 18px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+    #kissBtn:hover {
+      background-color: #e14c78;
+    }
+
+    input {
+      padding: 12px;
+      font-size: 1em;
+      margin: 10px auto;
+      display: block;
+      border: 2px solid #ff85a2;
+      border-radius: 10px;
+      width: 80%;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    p, h2 {
+      font-family: 'Segoe UI', sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <h1>To My Dearest Yoyi</h1>
+
+  <div class="section">
+    <h2> Scratch to Reveal something</h2>
+    <canvas id="scratchCard" width="500" height="150"></canvas>
+  </div>
+
+  <div class="section">
+    <h2>Type something</h2>
+ <input type="text" id="loveInput" placeholder="Type something and I'll tell you something langga">
+<p id="secretMsg" style="
+  display: none;
+  font-weight: normal;
+  color: #d6336c;
+  font-size: 1.3em;
+  font-family: 'Dancing Script', cursive;
+  white-space: pre-line;
+  background: #ffeaf4;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+">S – somehow, in this big world, I still found you  
+  O – our hearts met even before our hands did  
+  M – moments with you even virtual are my reality  
+  E – even oceans away, you make me feel at home  
+  T – this love? It’s not ordinary  
+  H – hearts like ours were made to survive distance  
+  I – I’m yours langga, on good days and bad days, always...  
+  N – no matter how long it takes, I’ll wait.  
+  G – God knew I needed someone like you. Mahal kita!!! 
+</p>
+
+
+
+  <div class="section">
+    <button id="kissBtn">Click for a kiss </button>
+    <p id="kissMsg"></p>
+  </div>
+
+  <div class="section">
+    <p id="daysTogether" style="
+  font-weight: normal;
+  color: #d6336c;
+  font-size: 1.2em;
+  font-family: 'Dancing Script', cursive;
+  white-space: pre-line;
+  background: #ffeaf4;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+"></p>
+
+  </div>
+
+  <script>
+    const canvas = document.getElementById('scratchCard');
+    const ctx = canvas.getContext('2d');
+    const hiddenText = "HAPPY 2ND MONTHSARRY LANGGA KO!!";
+
+    ctx.fillStyle = 'white';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.font = '21px Segoe Script';
+    ctx.fillStyle = '#d6336c';
+    ctx.fillText(hiddenText, 10, 80);
+
+    const overlay = document.createElement('canvas');
+    overlay.width = canvas.width;
+    overlay.height = canvas.height;
+    const overlayCtx = overlay.getContext('2d');
+    overlayCtx.fillStyle = 'pink';
+    overlayCtx.fillRect(0, 0, overlay.width, overlay.height);
+
+    canvas.parentNode.insertBefore(overlay, canvas);
+
+    overlay.style.position = 'absolute';
+    overlay.style.left = canvas.offsetLeft + 'px';
+    overlay.style.top = canvas.offsetTop + 'px';
+    overlay.style.cursor = 'pointer';
+
+    overlay.addEventListener('mousemove', e => {
+      if (e.buttons > 0) {
+        const rect = overlay.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        overlayCtx.clearRect(x, y, 17, 17);
+      }
+    });
+
+    document.getElementById("loveInput").addEventListener("input", function() {
+      if (this.value.toLowerCase() === 'something'){
+        document.getElementById("secretMsg").style.display = "block";
+      }
+    });
+
+    const kisses = ["Mwah!💋"];
+    document.getElementById("kissBtn").addEventListener("click", () => {
+      const random = kisses[Math.floor(Math.random() * kisses.length)];
+      document.getElementById("kissMsg").textContent = random;
+    });
+
+    const start = new Date("October 21, 2024");
+    const now = new Date();
+    const diff = Math.floor((now - start) / (1000 * 60 * 60 * 24));
+    document.getElementById("daysTogether").textContent = `Hi Langga, Happy 2nd Monthsary!
+
+Nakakatuwang isipin na kahit LDR tayo, we’ve made it this far two months of adjusting, understanding, and choosing each other every single day.
+Thank you for sticking with me through everything.
+Thank you for making time kahit pagod ka sa work,
+kahit busy ka sa responsibilities mo.
+Thank you for still playing Valo with me, kahit late na minsan.
+Yung simpleng “tara laro” means a lot more to me than you know.
+
+I appreciate your efforts more than words can explain.
+I know it’s not always easy, but we’re still learning, growing, and loving in the best way we can.
+
+Here’s to more months, more growth, more love na kahit malayo.
+Kahit hindi kita mahawakan, I always carry you in my heart. 
+Always Langga...
+
+I LOVE YOU ENDLESSLY BABY!!!`
+;
+
+
+
+    for (let i = 0; i < 30; i++) {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (2 + Math.random() * 3) + 's';
+      heart.style.opacity = Math.random();
+      heart.style.top = Math.random() * 100 + 'vh';
+      document.body.appendChild(heart);
+    }
+  </script>
+</body>
+</html>
